@@ -1,14 +1,6 @@
+use super::BorderChars;
 use super::Point;
 use super::Screen;
-
-struct BorderChars {
-    horizontal: char,
-    vertical: char,
-    top_left: char,
-    top_right: char,
-    bot_left: char,
-    bot_right: char,
-}
 
 pub trait Widget {
     fn get_preferred_width(&self) -> usize;

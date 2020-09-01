@@ -10,3 +10,6 @@ pub use point::Point;
 mod widget;
 pub use widget::DecoratedWindow;
 pub use widget::Widget;
+
+mod border_chars;
+pub use border_chars::BorderChars;
