@@ -1,0 +1,21 @@
+[package]
+name = "fracture_rust_2"
+version = "0.1.0"
+authors = ["Ben Bridle <bridle.benjamin@gmail.com>"]
+edition = "2018"
+
+
+[lib]
+name = "fracture"
+path = "src/fracture.rs"
+
+[[bin]]
+name = "fracture_test"
+path = "src/bin/fracture_demo.rs"
+
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+termion = "1.5.5"
