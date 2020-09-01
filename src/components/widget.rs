@@ -16,11 +16,13 @@ pub trait Widget {
     fn render(&self, screen: &mut Screen);
 }
 
-pub struct DecoratedWindow {}
+pub struct DecoratedWindow {
+    title: Option<String>,
+}
 
 impl DecoratedWindow {
-    pub fn new() -> DecoratedWindow {
-        DecoratedWindow {}
+    pub fn new(title: Option<String>) -> DecoratedWindow {
+        DecoratedWindow { title }
     }
 }
 
@@ -55,5 +57,11 @@ impl Widget for DecoratedWindow {
         screen.draw_char(Point::new(right, 0), border.top_right);
         screen.draw_char(Point::new(0, bottom), border.bot_left);
         screen.draw_char(Point::new(right, bottom), border.bot_right);
+
+        if let Some(title) = &self.title {
+            let padded_title = format!(" {} ", title);
+            let x = (screen.width - padded_title.chars().count()) / 2;
+            screen.draw_str(Point::new(x, 0), padded_title.as_str());
+        }
     }
 }
