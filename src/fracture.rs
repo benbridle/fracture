@@ -1,6 +1,8 @@
 pub mod components;
+pub mod widgets;
 use components::*;
 use termion;
+use widgets::*;
 
 pub struct Fracture {
     root_widget: DecoratedWindow,
