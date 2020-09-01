@@ -42,3 +42,17 @@ impl Screen {
         }
     }
 }
+
+impl fmt::Debug for Screen {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let mut output = String::from("\n");
+        for row in self.content.iter() {
+            output.push_str("[");
+            for screen_cell in row.iter() {
+                output.push(screen_cell.character);
+            }
+            output.push_str("]\n");
+        }
+        write!(f, "{}", output)
+    }
+}
