@@ -1,5 +1,4 @@
 use super::super::components::{BorderChars, Point, Screen, Widget};
-use std::fmt;
 
 pub struct DecoratedWindow {
     title: Option<String>,
@@ -30,6 +29,7 @@ impl Widget for DecoratedWindow {
         let mut sub_widget_screen = Screen::new(screen.width - 2, screen.height - 2);
         self.render_sub_widget(&mut sub_widget_screen);
         screen.draw_screen(Point::new(1, 1), &sub_widget_screen);
+
         let right = screen.width - 1;
         let bottom = screen.height - 1;
         let border = BorderChars {
