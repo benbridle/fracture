@@ -1,11 +1,27 @@
 use super::super::components::{BorderChars, Point, Screen, Widget};
+use std::fmt;
+
 pub struct DecoratedWindow {
     title: Option<String>,
+    sub_widget: Option<Box<dyn Widget>>,
 }
 
 impl DecoratedWindow {
     pub fn new(title: Option<String>) -> DecoratedWindow {
-        DecoratedWindow { title }
+        DecoratedWindow {
+            title,
+            sub_widget: None,
+        }
+    }
+
+    pub fn set_sub_widget(&mut self, widget: Box<dyn Widget>) {
+        self.sub_widget = Some(widget);
+    }
+
+    pub fn render_sub_widget(&self, screen: &mut Screen) {
+        if let Some(sub_widget) = &self.sub_widget {
+            sub_widget.render(screen)
+        }
     }
 }
 
@@ -17,6 +33,9 @@ impl Widget for DecoratedWindow {
         5
     }
     fn render(&self, screen: &mut Screen) {
+        let mut sub_widget_screen = Screen::new(screen.width - 2, screen.height - 2);
+        self.render_sub_widget(&mut sub_widget_screen);
+        screen.draw_screen(Point::new(1, 1), &sub_widget_screen);
         let right = screen.width - 1;
         let bottom = screen.height - 1;
         let border = BorderChars {
