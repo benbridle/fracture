@@ -22,6 +22,14 @@ fn main() {
         DynamicRect::new(60, 3, 80, 7),
         Box::new(FancyLabel::new(String::from("Fancy label text"))),
     );
+
+    let mut vbox = VBoxLayout::new();
+    vbox.add_sub_widget(Box::new(TestWidget::new()));
+    vbox.add_sub_widget(Box::new(Label::new(String::from("Label"))));
+    vbox.add_sub_widget(Box::new(TestWidget::new()));
+
+    dynamic_layout.add_sub_widget(DynamicRect::new(-30, 2, -1, -1), Box::new(vbox));
+
     d_window.set_sub_widget(Box::new(dynamic_layout));
     let fracture = fracture::Fracture::new(d_window);
     fracture.render_to_viewport();
