@@ -14,6 +14,10 @@ fn main() {
     let test_widget = TestWidget::new();
     sub_window.set_sub_widget(Box::new(test_widget));
     dynamic_layout.add_sub_widget(DynamicRect::new(15, 3, -15, -3), Box::new(sub_window));
+    dynamic_layout.add_sub_widget(
+        DynamicRect::new(15, 0, -15, 3),
+        Box::new(Label::new(String::from("Label text"))),
+    );
     d_window.set_sub_widget(Box::new(dynamic_layout));
     let fracture = fracture::Fracture::new(d_window);
     fracture.render_to_viewport();
