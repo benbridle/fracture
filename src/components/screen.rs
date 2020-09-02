@@ -1,5 +1,4 @@
-use super::Point;
-use super::ScreenCell;
+use super::{Area, Point, ScreenCell, StaticRect};
 use std::fmt;
 
 pub struct Screen {
@@ -18,6 +17,9 @@ impl Screen {
     }
     pub fn from_point(point: &Point) -> Screen {
         Screen::new(point.x, point.y)
+    }
+    pub fn from_static_rect(rect: &StaticRect) -> Screen {
+        Screen::new(rect.width, rect.height)
     }
 
     pub fn get_content(&self) -> &Vec<Vec<ScreenCell>> {
@@ -40,6 +42,9 @@ impl Screen {
                 self.draw_char(Point::new(x + p.x, y + p.y), screen_cell.character)
             }
         }
+    }
+    pub fn to_area(&self) -> Area {
+        Area::new(self.width, self.height)
     }
 }
 
