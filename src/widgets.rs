@@ -9,3 +9,6 @@ pub use dynamic_layout_window::DynamicLayoutWindow;
 
 mod label;
 pub use label::Label;
+
+mod fancy_label;
+pub use fancy_label::FancyLabel;
