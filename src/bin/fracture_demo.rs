@@ -13,10 +13,14 @@ fn main() {
     let mut d_window = DecoratedWindow::new(Some(String::from("Root widget")));
     let test_widget = TestWidget::new();
     sub_window.set_sub_widget(Box::new(test_widget));
-    dynamic_layout.add_sub_widget(DynamicRect::new(15, 3, -15, -3), Box::new(sub_window));
+    dynamic_layout.add_sub_widget(DynamicRect::new(15, 3, 45, -3), Box::new(sub_window));
     dynamic_layout.add_sub_widget(
-        DynamicRect::new(15, 0, -15, 3),
+        DynamicRect::new(60, 0, 80, 3),
         Box::new(Label::new(String::from("Label text"))),
+    );
+    dynamic_layout.add_sub_widget(
+        DynamicRect::new(60, 3, 80, 7),
+        Box::new(FancyLabel::new(String::from("Fancy label text"))),
     );
     d_window.set_sub_widget(Box::new(dynamic_layout));
     let fracture = fracture::Fracture::new(d_window);
