@@ -12,3 +12,6 @@ pub use label::Label;
 
 mod fancy_label;
 pub use fancy_label::FancyLabel;
+
+mod vbox_layout;
+pub use vbox_layout::VBoxLayout;
