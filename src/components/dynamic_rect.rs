@@ -21,26 +21,33 @@ impl DynamicRect {
         }
     }
     pub fn to_static_rect(&self, parent_area: Area) -> StaticRect {
+        let parent_width = parent_area.width as isize;
+        let parent_height = parent_area.height as isize;
         let static_left = if self.left < 0 {
-            parent_area.width + self.left as usize
+            parent_width + self.left
         } else {
-            self.left as usize
+            self.left
         };
         let static_right = if self.right < 0 {
-            parent_area.width + self.right as usize
+            parent_width + self.right
         } else {
-            self.right as usize
+            self.right
         };
         let static_top = if self.top < 0 {
-            parent_area.height + self.top as usize
+            parent_height + self.top
         } else {
-            self.top as usize
+            self.top
         };
         let static_bottom = if self.bottom < 0 {
-            parent_area.height + self.bottom as usize
+            parent_height + self.bottom
         } else {
-            self.bottom as usize
+            self.bottom
         };
+
+        let static_left = static_left as usize;
+        let static_right = static_right as usize;
+        let static_top = static_top as usize;
+        let static_bottom = static_bottom as usize;
 
         StaticRect::new(
             Point::new(static_left, static_top),
