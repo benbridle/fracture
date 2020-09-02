@@ -26,12 +26,6 @@ impl DecoratedWindow {
 }
 
 impl Widget for DecoratedWindow {
-    fn get_preferred_width(&self) -> usize {
-        10
-    }
-    fn get_preferred_height(&self) -> usize {
-        5
-    }
     fn render(&self, screen: &mut Screen) {
         let mut sub_widget_screen = Screen::new(screen.width - 2, screen.height - 2);
         self.render_sub_widget(&mut sub_widget_screen);
