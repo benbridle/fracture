@@ -1,4 +1,5 @@
 use super::{Area, Point, StaticRect};
+use std::cmp;
 
 pub struct DynamicRect {
     left: isize,
@@ -23,6 +24,7 @@ impl DynamicRect {
     pub fn to_static_rect(&self, parent_area: Area) -> StaticRect {
         let parent_width = parent_area.width as isize;
         let parent_height = parent_area.height as isize;
+        // Do start-end conversions
         let static_left = if self.left < 0 {
             parent_width + self.left
         } else {
@@ -44,15 +46,13 @@ impl DynamicRect {
             self.bottom
         };
 
-        let static_left = static_left as usize;
-        let static_right = static_right as usize;
-        let static_top = static_top as usize;
-        let static_bottom = static_bottom as usize;
+        let width = cmp::max(static_right - static_left, 0) as usize;
+        let height = cmp::max(static_bottom - static_top, 0) as usize;
 
         StaticRect::new(
-            Point::new(static_left, static_top),
-            static_right - static_left,
-            static_bottom - static_top,
+            Point::new(static_left as usize, static_top as usize),
+            width,
+            height,
         )
     }
 }

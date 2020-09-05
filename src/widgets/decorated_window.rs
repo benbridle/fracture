@@ -26,9 +26,11 @@ impl DecoratedWindow {
 
 impl Widget for DecoratedWindow {
     fn render(&self, screen: &mut Screen) {
-        let mut sub_widget_screen = Screen::new(screen.width - 2, screen.height - 2);
-        self.render_sub_widget(&mut sub_widget_screen);
-        screen.draw_screen(Point::new(1, 1), &sub_widget_screen);
+        if screen.width >= 2 && screen.height >= 2 {
+            let mut sub_widget_screen = Screen::new(screen.width - 2, screen.height - 2);
+            self.render_sub_widget(&mut sub_widget_screen);
+            screen.draw_screen(Point::new(1, 1), &sub_widget_screen);
+        }
 
         let right = screen.width - 1;
         let bottom = screen.height - 1;
@@ -49,10 +51,10 @@ impl Widget for DecoratedWindow {
             screen.draw_char(Point::new(0, y), border.vertical);
             screen.draw_char(Point::new(right, y), border.vertical);
         }
-        screen.draw_char(Point::new(0, 0), border.top_left);
-        screen.draw_char(Point::new(right, 0), border.top_right);
         screen.draw_char(Point::new(0, bottom), border.bot_left);
         screen.draw_char(Point::new(right, bottom), border.bot_right);
+        screen.draw_char(Point::new(0, 0), border.top_left);
+        screen.draw_char(Point::new(right, 0), border.top_right);
 
         if let Some(title) = &self.title {
             let padded_title = format!(" {} ", title);
