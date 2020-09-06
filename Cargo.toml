@@ -8,6 +8,7 @@ edition = "2018"
 [lib]
 name = "fracture"
 path = "src/fracture.rs"
+crate_type = ["lib","cdylib"]
 
 [[bin]]
 name = "fracture_test"

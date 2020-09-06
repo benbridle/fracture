@@ -4,6 +4,18 @@ use components::*;
 use termion;
 use widgets::*;
 
+#[repr(C)]
+pub struct Test {
+    num: i32,
+}
+
+impl Test {
+    #[no_mangle]
+    pub extern "C" fn show(&self) {
+        println!("Message: {}", self.num)
+    }
+}
+
 pub struct Fracture {
     root_widget: DecoratedWindow,
 }
