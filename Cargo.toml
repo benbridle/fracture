@@ -1,5 +1,5 @@
 [package]
-name = "fracture_rust_2"
+name = "fracture"
 version = "0.1.0"
 authors = ["Ben Bridle <bridle.benjamin@gmail.com>"]
 edition = "2018"
