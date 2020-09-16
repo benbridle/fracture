@@ -24,7 +24,14 @@ impl Widget for VBoxLayout {
         for sub_widget in &self.sub_widgets {
             heights.push(sub_widget.get_preferred_height());
             match sub_widget.get_preferred_height() {
-                Some(height) => remaining_height = remaining_height - height,
+                Some(height) => {
+                    // Subtract height from remaining_height without overflowing
+                    remaining_height = if remaining_height > height {
+                        remaining_height - height
+                    } else {
+                        0
+                    }
+                }
                 None => ambivilent_count = ambivilent_count + 1,
             }
         }

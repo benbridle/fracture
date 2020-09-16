@@ -32,8 +32,17 @@ impl Widget for DecoratedWindow {
             screen.draw_screen(Point::new(1, 1), &sub_widget_screen);
         }
 
-        let right = screen.width - 1;
-        let bottom = screen.height - 1;
+        // Prevent overflow error from subtraction
+        let right = if screen.width > 1 {
+            screen.width - 1
+        } else {
+            0
+        };
+        let bottom = if screen.height > 1 {
+            screen.height - 1
+        } else {
+            0
+        };
         let border = BorderChars {
             horizontal: '─',
             vertical: '│',
